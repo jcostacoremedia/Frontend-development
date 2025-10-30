@@ -1,0 +1,74 @@
+# IntelliJ Idea:
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Maven:
+target/
+overlays/
+.m2/
+.mvn/timing.properties
+
+# Eclipse:
+.classpath
+.project
+.settings/
+
+# Sass:
+.sass-cache/
+*.css.map
+
+# NPM:
+/**/node/
+/**/node_modules/
+node_modules/
+**/node_modules/
+
+# Logs:
+*.log
+*.out
+.npm-debug.log*
+*.pid
+
+# Git:
+*.orig
+*.rej
+
+# OS X:
+.DS_Store
+
+# Emacs
+*~
+
+# Jenkins
+.repository
+
+# TeX
+*.aux
+*.lof
+*.toc
+
+# Sencha Cmd
+.sencha/.cvsignore
+.sencha/.gitignore
+.remote-packages/
+
+# Chef
+.kitchen
+.kitchen.local.yml
+.rakeTasks
+
+#shade plugin
+dependency-reduced-pom.xml
+
+# The config/ folder below src/{main,test}/resources can be created to override the main properties
+# (most likely application*.properties) for local development.
+# This is an addition/alternative to using application*-dev.properties, which may become handy
+# if you have to adapt several properties files (and have them bundled in one folder) or if you
+# want to test the Spring profile activation mechanism itself.
+#
+# For details see Spring documentation for application properties files and profiles and
+# their preceedence:
+# https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-external-config-application-property-files
+**/src/*/resources/config/*.properties
