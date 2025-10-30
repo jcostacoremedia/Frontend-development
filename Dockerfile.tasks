@@ -1,0 +1,54 @@
+# syntax=docker/dockerfile:1.3
+
+# See https://github.com/moby/moby/issues/38379
+ARG FRONTEND_BUILD_IMAGE=build-task
+
+# due to https://github.com/sass/node-sass/issues/3033, we have to enforce linux/amd64
+FROM --platform=linux/amd64 node:20.12.1-bullseye-slim as tooling-image
+
+# pnpm 8.x
+RUN npm install -g pnpm@8.15.3
+
+
+FROM tooling-image as build-task
+WORKDIR /ws-root/frontend
+COPY . /ws-root/frontend
+
+# install
+RUN --mount=type=secret,mode=0644,id=npmrc,target=/ws-root/frontend/.npmrc pnpm install
+# build
+RUN pnpm build
+# zip
+RUN pnpm build-frontend-zip
+
+
+FROM ${FRONTEND_BUILD_IMAGE} as test-task
+WORKDIR /ws-root/frontend
+ARG SKIP_TESTS
+RUN echo "Tests skipped: ${SKIP_TESTS:-false}" > /tmp/test.out
+RUN if [ "${SKIP_TESTS:-false}" = "true" ] ; then echo "Skip tests." ; else pnpm test || echo "failed" > /tmp/test.out; fi
+RUN find /ws-root/frontend -name "node_modules" -type d -exec rm -rf {} +
+
+
+FROM scratch as test-only-stage
+COPY --from=test-task /tmp/test.out /test.out
+
+
+FROM tooling-image as audit-task
+WORKDIR /ws-root/frontend
+COPY . /ws-root/frontend
+RUN echo '' > /tmp/audit.log
+RUN echo '' > /tmp/audit.json
+ARG AUDIT_LEVEL=high
+RUN pnpm audit --audit-level=${AUDIT_LEVEL} > /tmp/audit.log || true
+RUN pnpm audit --json --audit-level=${AUDIT_LEVEL} > /tmp/audit.json || true
+
+
+FROM scratch as audit-stage
+COPY --from=audit-task /tmp/audit.log /audit.log
+COPY --from=audit-task /tmp/audit.json /audit.json
+
+
+FROM scratch as final-stage
+COPY --from=build-task /ws-root/frontend/target/frontend.zip /frontend.zip
+COPY --from=test-task /tmp/test.out /test.out

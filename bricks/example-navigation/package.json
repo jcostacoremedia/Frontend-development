@@ -1,0 +1,23 @@
+{
+  "name": "@coremedia-examples/brick-navigation",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint  \"src/**/*.js\""
+  },
+  "dependencies": {
+    "@coremedia/brick-device-detector": "workspace:*",
+    "@coremedia/brick-media": "workspace:*",
+    "@coremedia/brick-node-decoration-service": "workspace:*",
+    "@coremedia/brick-utils": "workspace:*",
+    "jquery": "^3.7.1"
+  },
+  "devDependencies": {
+    "@coremedia/eslint-config-frontend": "workspace:*",
+    "eslint": "^8.56.0"
+  },
+  "coremedia": {
+    "type": "brick",
+    "init": "src/js/init.js"
+  }
+}

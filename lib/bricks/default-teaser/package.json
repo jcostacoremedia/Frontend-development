@@ -1,0 +1,12 @@
+{
+  "name": "@coremedia/brick-default-teaser",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@coremedia/brick-media": "workspace:*",
+    "@coremedia/brick-utils": "workspace:*"
+  },
+  "coremedia": {
+    "type": "brick"
+  }
+}

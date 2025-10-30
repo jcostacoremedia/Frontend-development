@@ -1,0 +1,27 @@
+{
+  "name": "@coremedia/cm-cli",
+  "description": "CoreMedia cli scripts for the frontend workspace.",
+  "version": "2.1.0",
+  "private": true,
+  "bin": {
+    "cm": "./bin/cm-cli.js"
+  },
+  "dependencies": {
+    "@coremedia/cm-logger": "workspace:*",
+    "@coremedia/module-creator": "workspace:*",
+    "@coremedia/theme-importer": "workspace:*",
+    "@coremedia/tool-utils": "workspace:*",
+    "@coremedia/zipper": "workspace:*",
+    "inquirer": "^8.2.6",
+    "yargs": "^15.4.1"
+  },
+  "devDependencies": {
+    "@coremedia/eslint-config-frontend": "workspace:*",
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0"
+  },
+  "scripts": {
+    "lint": "eslint  \"src/**/*.js\"",
+    "test": "jest"
+  }
+}

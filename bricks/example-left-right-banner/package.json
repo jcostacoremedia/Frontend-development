@@ -1,0 +1,21 @@
+{
+  "name": "@coremedia-examples/brick-left-right-banner",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint  \"src/**/*.js\""
+  },
+  "dependencies": {
+    "@coremedia/brick-default-teaser": "workspace:*",
+    "@coremedia/brick-node-decoration-service": "workspace:*",
+    "@coremedia/brick-utils": "workspace:*"
+  },
+  "devDependencies": {
+    "@coremedia/eslint-config-frontend": "workspace:*",
+    "eslint": "^8.56.0"
+  },
+  "coremedia": {
+    "type": "brick",
+    "init": "src/js/init.js"
+  }
+}

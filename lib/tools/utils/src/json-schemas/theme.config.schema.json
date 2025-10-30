@@ -1,0 +1,421 @@
+{
+  "title": "JSON schema for CoreMedia themes.",
+  "$id": "https://www.coremedia.com/json-schemas/theme.config.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "resourceType": {
+      "description": "The type of the resource.",
+      "enum": ["webpack", "copy", "externalLink"]
+    },
+    "externalUri": {
+      "type": "string",
+      "pattern": "^(http:|https:)?//",
+      "description": "An external uri (starting with 'http://', 'https://' or '//')."
+    },
+    "srcFilePath": {
+      "$ref": "types.schema.json#/definitions/nonEmptyString",
+      "description": "A file path relative to the theme's root directory"
+    },
+    "srcFilePaths": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/srcFilePath"
+      },
+      "description": "A list of files to include in the bundle. Can be empty (e.g. if the theme does not have own files and the 'smartImport' config is enabled)."
+    },
+    "targetFilePath": {
+      "$ref": "types.schema.json#/definitions/nonEmptyString",
+      "description": "Specifies where the file will be put relative to the theme's target directory."
+    },
+    "include": {
+      "type": "boolean",
+      "description": "Defines if the code resource is included in the initial theme load. Setting the option to false means that although the code will be included in the theme build, you must manually include it."
+    },
+    "inHead": {
+      "type": "boolean",
+      "description": "If true, the script file is included in the document's head otherwise it will be loaded at the end of the document's body."
+    },
+    "defer": {
+      "type": "boolean",
+      "description": "If true, loading of the script file is deferred meaning it will be loaded on document ready."
+    },
+    "smartImport": {
+      "description": "Defines the smart import behaviour (automatically activated dependencies). Defaults to 'default'.",
+      "$ref": "types.schema.json#/definitions/nonEmptyStringOrNull"
+    },
+    "entryPointName": {
+      "$ref": "types.schema.json#/definitions/nonEmptyStringOrNull",
+      "pattern": "^[^/\\\\]*$",
+      "description": "If provided you can specify the name of the webpack entry point that is used as a base name for the resulting target filename. This value defaults to the base name of the first given src or the theme name if src is an empty array."
+    },
+    "runtime": {
+      "$ref": "types.schema.json#/definitions/nonEmptyString",
+      "description": "Defines where the webpack runtime is stored. Only entries with the same runtime configuration can share module instances."
+    },
+    "bundleEncoding": {
+      "description": "The encoding of the resource bundle.",
+      "enum": ["ISO-8859-1", "UTF-8"]
+    }
+  },
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "name": {
+      "$ref": "types.schema.json#/definitions/nonEmptyString",
+      "description": "The name of the theme."
+    },
+    "buildConfig": {
+      "type": "object",
+      "description": "Additional build configuration.",
+      "properties": {
+        "imageEmbedThreshold": {
+          "type": "integer",
+          "minimum": -1,
+          "default": 10000,
+          "description": "Defines a threshold in bytes until images are embedded into a referencing file rather than being linked. Set this value to -1 to disable embedding images entirely."
+        },
+        "chunkMappingPath": {
+          "$ref": "#/definitions/targetFilePath",
+          "default": "js/chunkPathById.js",
+          "description": "If code-splitting is used this value defines where the chunk path mapping is stored."
+        }
+      },
+      "additionalProperties": false,
+      "default": {}
+    },
+    "targetPath": {
+      "type": "string",
+      "description": "Specifies the output path of the build theme. If not set the 'target' folder of the surrounding frontend workspace' (or if not present the theme's) root folder will be used."
+    },
+    "description": {
+      "$ref": "types.schema.json#/definitions/nonEmptyStringOrNull",
+      "description": "A description of the theme.",
+      "default": null
+    },
+    "thumbnail": {
+      "$ref": "types.schema.json#/definitions/nonEmptyStringOrNull",
+      "description": "A file path relative to the theme's root directory where an image to be used as thumbnail is present.",
+      "default": null
+    },
+    "styles": {
+      "type": "array",
+      "items": {
+        "if": {
+          "properties": {
+            "type": {
+              "enum": ["webpack"]
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "src": {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/srcFilePath"
+                },
+                {
+                  "$ref": "#/definitions/srcFilePaths"
+                }
+              ]
+            },
+            "entryPointName": {
+              "$ref": "#/definitions/entryPointName",
+              "default": null
+            },
+            "smartImport": {
+              "$ref": "#/definitions/smartImport",
+              "default": "default"
+            },
+            "include": {
+              "$ref": "#/definitions/include",
+              "default": true
+            }
+          },
+          "required": ["type", "src"],
+          "additionalProperties": false
+        },
+        "else": {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": ["copy"]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "src": {
+                "$ref": "#/definitions/srcFilePath"
+              },
+              "target": {
+                "$ref": "#/definitions/targetFilePath"
+              },
+              "include": {
+                "$ref": "#/definitions/include",
+                "default": true
+              }
+            },
+            "required": ["type", "src", "target"],
+            "additionalProperties": false
+          },
+          "else": {
+            "if": {
+              "properties": {
+                "type": {
+                  "enum": ["externalLink"]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "src": {
+                  "allOf": [
+                    {
+                      "$ref": "types.schema.json#/definitions/nonEmptyString"
+                    },
+                    {
+                      "$ref": "#/definitions/externalUri"
+                    }
+                  ]
+                },
+                "include": {
+                  "$ref": "#/definitions/include",
+                  "default": true
+                }
+              },
+              "required": ["type", "src"],
+              "additionalProperties": false
+            }
+          }
+        },
+        "properties": {
+          "type": {
+            "$ref": "#/definitions/resourceType"
+          },
+          "include": {
+            "$ref": "#/definitions/include",
+            "default": true
+          },
+          "src": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/srcFilePath"
+              },
+              {
+                "$ref": "#/definitions/srcFilePaths"
+              },
+              {
+                "$ref": "#/definitions/externalUri"
+              }
+            ]
+          },
+          "target": {
+            "$ref": "#/definitions/targetFilePath"
+          }
+        }
+      },
+      "description": "Styles to provide with the theme.",
+      "default": []
+    },
+    "scripts": {
+      "type": "array",
+      "items": {
+        "if": {
+          "properties": {
+            "type": {
+              "enum": ["webpack"]
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "src": {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/srcFilePath"
+                },
+                {
+                  "$ref": "#/definitions/srcFilePaths"
+                }
+              ]
+            },
+            "entryPointName": {
+              "$ref": "#/definitions/entryPointName",
+              "default": null
+            },
+            "smartImport": {
+              "$ref": "#/definitions/smartImport",
+              "default": "default"
+            },
+            "include": {
+              "$ref": "#/definitions/include",
+              "default": true
+            },
+            "inHead": {
+              "$ref": "#/definitions/inHead",
+              "default": false
+            },
+            "defer": {
+              "$ref": "#/definitions/defer",
+              "default": false
+            },
+            "runtime": {
+              "$ref": "#/definitions/runtime",
+              "default": "commons"
+            }
+          },
+          "required": ["type", "src"],
+          "additionalProperties": false
+        },
+        "else": {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": ["copy"]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "src": {
+                "$ref": "#/definitions/srcFilePath"
+              },
+              "target": {
+                "$ref": "#/definitions/targetFilePath"
+              },
+              "include": {
+                "$ref": "#/definitions/include",
+                "default": true
+              },
+              "inHead": {
+                "$ref": "#/definitions/inHead",
+                "default": false
+              },
+              "defer": {
+                "$ref": "#/definitions/defer",
+                "default": false
+              }
+            },
+            "required": ["type", "src", "target"],
+            "additionalProperties": false
+          },
+          "else": {
+            "if": {
+              "properties": {
+                "type": {
+                  "enum": ["externalLink"]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "src": {
+                  "allOf": [
+                    {
+                      "$ref": "types.schema.json#/definitions/nonEmptyString"
+                    },
+                    {
+                      "$ref": "#/definitions/externalUri"
+                    }
+                  ]
+                },
+                "include": {
+                  "$ref": "#/definitions/include",
+                  "default": true
+                },
+                "inHead": {
+                  "$ref": "#/definitions/inHead",
+                  "default": false
+                },
+                "defer": {
+                  "$ref": "#/definitions/defer",
+                  "default": false
+                }
+              },
+              "required": ["type", "src"],
+              "additionalProperties": false
+            }
+          }
+        },
+        "properties": {
+          "type": {
+            "$ref": "#/definitions/resourceType"
+          },
+          "include": {
+            "$ref": "#/definitions/include",
+            "default": true
+          },
+          "inHead": {
+            "$ref": "#/definitions/inHead"
+          },
+          "defer": {
+            "$ref": "#/definitions/defer"
+          },
+          "src": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/srcFilePath"
+              },
+              {
+                "$ref": "#/definitions/srcFilePaths"
+              },
+              {
+                "$ref": "#/definitions/externalUri"
+              }
+            ]
+          },
+          "target": {
+            "$ref": "#/definitions/targetFilePath"
+          }
+        }
+      },
+      "description": "Scripts to provide with the theme.",
+      "default": []
+    },
+    "l10n": {
+      "type": "object",
+      "properties": {
+        "masterLanguage": {
+          "type": "string",
+          "description": "The language id of the master language",
+          "default": "en"
+        },
+        "bundleEncoding": {
+          "$ref": "#/definitions/bundleEncoding",
+          "default": "ISO-8859-1"
+        },
+        "bundleNames": {
+          "$ref": "types.schema.json#/definitions/nonEmptyStringList",
+          "default": [],
+          "description": "A list of non-empty strings containing the names (e.g. ${bundleName}_en.properties) of resource bundles."
+        }
+      },
+      "additionalItems": false,
+      "default": {},
+      "description": "Options regarding localization."
+    }
+  },
+  "additionalProperties": false,
+  "required": ["name"]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "@coremedia/frontend",
+  "version": "3.0.0",
+  "private": true,
+  "scripts": {
+    "preinstall": "node ./lib/tools/pnpm-check/index.js",
+    "test": "pnpm -r test",
+    "build": "pnpm -r build",
+    "build-frontend-zip": "node ./lib/tools/cm-cli/bin/cm-cli.js build-frontend-zip",
+    "deploy": "pnpm -r deploy",
+    "create-theme": "node ./lib/tools/cm-cli/bin/cm-cli.js create-theme",
+    "create-brick": "node ./lib/tools/cm-cli/bin/cm-cli.js create-brick",
+    "eject": "node ./lib/tools/cm-cli/bin/cm-cli.js eject",
+    "lint": "pnpm -r lint"
+  },
+  "engines": {
+    "node": "20",
+    "pnpm": "^8.15.3"
+  },
+  "coremedia": {
+    "type": "workspace"
+  },
+  "pnpm": {
+    "auditConfig": {
+      "ignoreCves": [
+        "CVE-2019-8331"
+      ]
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@coremedia/theme-importer",
+  "version": "1.1.1",
+  "private": true,
+  "main": "src/index.js",
+  "dependencies": {
+    "@coremedia/cm-logger": "workspace:*",
+    "@coremedia/tool-utils": "workspace:*",
+    "@coremedia/zipper": "workspace:*",
+    "axios": "^1.6.7"
+  },
+  "devDependencies": {
+    "@coremedia/eslint-config-frontend": "workspace:*",
+    "eslint": "^8.56.0"
+  },
+  "scripts": {
+    "lint": "eslint  \"src/**/*.js\""
+  }
+}

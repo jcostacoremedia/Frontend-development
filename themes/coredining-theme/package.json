@@ -1,0 +1,71 @@
+{
+  "name": "@coremedia/coredining-theme",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "webpack",
+    "deploy": "cm theme-importer deploy-theme",
+    "start": "cm monitor",
+    "theme-importer": "cm theme-importer",
+    "lint": "eslint \"src/**/*.js\""
+  },
+  "__comment__dependencies__": {
+    "__comment__": "List of all brick dependencies. In order to add a dependency, move the entry to 'dependencies'",
+    "@coremedia/brick-default-teaser": "^1.0.0",
+    "@coremedia/brick-device-detector": "^1.0.0",
+    "@coremedia/brick-dynamic-include": "^1.0.0",
+    "@coremedia/brick-image-maps": "^1.0.0",
+    "@coremedia/brick-magnific-popup": "^1.0.0",
+    "@coremedia/brick-media": "^1.0.0",
+    "@coremedia/brick-mediaelement": "^1.0.0",
+    "@coremedia/brick-node-decoration-service": "^1.0.0",
+    "@coremedia/brick-p13n-dynamic-include": "^1.0.0",
+    "@coremedia/brick-page": "^1.0.0",
+    "@coremedia/brick-slick-carousel": "^1.0.0",
+    "@coremedia-examples/brick-360-spinner": "^1.0.0",
+    "@coremedia-examples/brick-carousel-banner": "^1.0.0",
+    "@coremedia-examples/brick-cart": "^1.0.0",
+    "@coremedia-examples/brick-detail": "^1.0.0",
+    "@coremedia-examples/brick-download-portal": "^1.0.0",
+    "@coremedia-examples/brick-elastic-social": "^1.0.0",
+    "@coremedia-examples/brick-footer": "^1.0.0",
+    "@coremedia-examples/brick-fragment-scenario": "^1.0.0",
+    "@coremedia-examples/brick-hero-banner": "^1.0.0",
+    "@coremedia-examples/brick-landscape-banner": "^1.0.0",
+    "@coremedia-examples/brick-left-right-banner": "^1.0.0",
+    "@coremedia-examples/brick-navigation": "^1.0.0",
+    "@coremedia-examples/brick-popup": "^1.0.0",
+    "@coremedia-examples/brick-portrait-banner": "^1.0.0",
+    "@coremedia-examples/brick-product-assets": "^1.0.0",
+    "@coremedia-examples/brick-search": "^1.0.0",
+    "@coremedia-examples/brick-shoppable-video": "^1.0.0",
+    "@coremedia-examples/brick-square-banner": "^1.0.0",
+    "@coremedia-examples/brick-tag-management": "^1.0.0",
+    "@coremedia/brick-utils": "workspace:*",
+    "jquery": "^3.7.1"
+  },
+  "dependencies": {
+    "@coremedia/brick-preview": "^1.0.0",
+    "@coremedia/brick-utils": "^1.0.0",
+    "@coremedia-training/brick-bootstrap": "^1.0.0",
+    "@coremedia/brick-media": "^1.0.0"
+
+  },
+  "devDependencies": {
+    "@coremedia/cm-cli": "workspace:*",
+    "@coremedia/eslint-config-frontend": "workspace:*",
+    "@coremedia/theme-utils": "workspace:*",
+    "eslint": "^8.56.0",
+    "webpack": "^5.90.3"
+  },
+  "main": "src/js/index.js",
+  "coremedia": {
+    "type": "theme",
+    "init": "src/js/coredining.js"
+  },
+  "browserslist": [
+    "last 1 Chrome version",
+    "last 1 Firefox version",
+    "last 1 Edge version"
+  ]
+}

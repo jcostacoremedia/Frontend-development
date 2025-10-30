@@ -1,0 +1,26 @@
+{
+  "name": "@coremedia/tool-utils",
+  "version": "1.1.0",
+  "private": true,
+  "main": "src/index.js",
+  "dependencies": {
+    "@coremedia/cm-logger": "workspace:*",
+    "ajv": "^6.12.6",
+    "closest-package": "^1.0.0",
+    "find-up": "^5.0.0",
+    "glob": "^7.2.3",
+    "js-yaml": "^4.1.0",
+    "json5": "^2.2.3",
+    "lodash": "^4.17.21",
+    "selfsigned": "^2.4.1"
+  },
+  "devDependencies": {
+    "@coremedia/eslint-config-frontend": "workspace:*",
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0"
+  },
+  "scripts": {
+    "lint": "eslint  \"src/**/*.js\"",
+    "test": "jest"
+  }
+}

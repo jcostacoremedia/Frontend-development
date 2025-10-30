@@ -1,0 +1,11 @@
+{
+  "name": "@coremedia-examples/brick-footer",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@coremedia/brick-utils": "workspace:*"
+  },
+  "coremedia": {
+    "type": "brick"
+  }
+}

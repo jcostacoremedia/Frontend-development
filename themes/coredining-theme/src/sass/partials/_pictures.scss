@@ -1,0 +1,25 @@
+// Definition of CSS rules for pictures
+
+.xx-picture {
+
+  // Elements...
+  &__image {
+    @include stretch-absolute();
+    border: lightgray solid thin;
+    padding: 3px 4px;
+  }
+  &__caption {
+    text-align: center;
+  }
+
+
+  // Modifiers...
+  &--large {
+    @include aspect-ratio-box(16, 9);
+  }
+
+  &--thumbnail {
+    @include aspect-ratio-box(1, 1);
+  }
+
+}

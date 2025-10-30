@@ -1,0 +1,29 @@
+//
+// Generates an aspect ratio box. Elements within the aspect ratio box need to be positioned absolute otherwise
+// they will extend the box.
+//
+// @param: {x} The x-coordinate for the aspect ratio
+// @param: {y} The y-coordinate for the aspect ratio
+// @param: {overflow} By default overflow is hidden, this can be adjusted if not wanted
+// @param: {position} By default position is relative, this can be adjusted if not wanted
+// @example:
+//
+// @include aspect-ratio-box(4, 3) {
+//    background-color: red;
+// }
+//
+@mixin aspect-ratio-box($x, $y, $overflow: hidden, $position: relative) {
+  @if ($overflow and $position) {
+    display: block;
+  }
+  position: $position;
+  overflow: $overflow;
+
+  $percentage: percentage($y/$x);
+
+  &:before {
+    display: block;
+    padding-top: calc(#{$percentage});
+    content: "";
+  }
+}

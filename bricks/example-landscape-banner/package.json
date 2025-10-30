@@ -1,0 +1,12 @@
+{
+  "name": "@coremedia-examples/brick-landscape-banner",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@coremedia/brick-default-teaser": "workspace:*",
+    "@coremedia/brick-utils": "workspace:*"
+  },
+  "coremedia": {
+    "type": "brick"
+  }
+}

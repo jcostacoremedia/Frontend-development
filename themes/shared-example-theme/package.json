@@ -1,0 +1,58 @@
+{
+  "name": "@coremedia-examples/shared-example-theme",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "webpack",
+    "deploy": "cm theme-importer deploy-theme",
+    "start": "cm monitor",
+    "theme-importer": "cm theme-importer",
+    "lint": "eslint  \"src/**/*.js\""
+  },
+  "dependencies": {
+    "@coremedia-examples/brick-360-spinner": "workspace:*",
+    "@coremedia-examples/brick-carousel-banner": "workspace:*",
+    "@coremedia-examples/brick-detail": "workspace:*",
+    "@coremedia-examples/brick-elastic-social": "workspace:*",
+    "@coremedia-examples/brick-footer": "workspace:*",
+    "@coremedia-examples/brick-hero-banner": "workspace:*",
+    "@coremedia-examples/brick-landscape-banner": "workspace:*",
+    "@coremedia-examples/brick-left-right-banner": "workspace:*",
+    "@coremedia-examples/brick-navigation": "workspace:*",
+    "@coremedia-examples/brick-popup": "workspace:*",
+    "@coremedia-examples/brick-portrait-banner": "workspace:*",
+    "@coremedia-examples/brick-search": "workspace:*",
+    "@coremedia-examples/brick-shoppable-video": "workspace:*",
+    "@coremedia-examples/brick-square-banner": "workspace:*",
+    "@coremedia-examples/brick-tag-management": "workspace:*",
+    "@coremedia/brick-default-teaser": "workspace:*",
+    "@coremedia/brick-dynamic-include": "workspace:*",
+    "@coremedia/brick-image-maps": "workspace:*",
+    "@coremedia/brick-media": "workspace:*",
+    "@coremedia/brick-mediaelement": "workspace:*",
+    "@coremedia/brick-node-decoration-service": "workspace:*",
+    "@coremedia/brick-p13n-dynamic-include": "workspace:*",
+    "@coremedia/brick-page": "workspace:*",
+    "@coremedia/brick-preview": "workspace:*",
+    "@coremedia/brick-slick-carousel": "workspace:*",
+    "@coremedia/brick-utils": "workspace:*",
+    "jquery": "^3.7.1"
+  },
+  "devDependencies": {
+    "@coremedia/cm-cli": "workspace:*",
+    "@coremedia/eslint-config-frontend": "workspace:*",
+    "@coremedia/theme-utils": "workspace:*",
+    "eslint": "^8.56.0",
+    "webpack": "^5.90.3"
+  },
+  "main": "src/js/index.js",
+  "coremedia": {
+    "type": "theme",
+    "init": "src/js/shared-example.js"
+  },
+  "browserslist": [
+    "last 1 Chrome version",
+    "last 1 Firefox version",
+    "last 1 Edge version"
+  ]
+}

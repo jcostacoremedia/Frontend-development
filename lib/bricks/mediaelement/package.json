@@ -1,0 +1,25 @@
+{
+  "name": "@coremedia/brick-mediaelement",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint  \"src/**/*.js\""
+  },
+  "dependencies": {
+    "@coremedia/brick-media": "workspace:*",
+    "@coremedia/brick-node-decoration-service": "workspace:*",
+    "@coremedia/brick-utils": "workspace:*",
+    "jquery": "^3.7.1",
+    "mediaelement": "^4.2.17",
+    "promise-polyfill": "^8.3.0"
+  },
+  "devDependencies": {
+    "@coremedia/eslint-config-frontend": "workspace:*",
+    "eslint": "^8.56.0"
+  },
+  "main": "src/js/index.js",
+  "coremedia": {
+    "type": "brick",
+    "init": "src/js/init.js"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "@coremedia-examples/brick-fragment-scenario",
+  "version": "1.0.0",
+  "private": true,
+  "coremedia": {
+    "type": "brick"
+  }
+}

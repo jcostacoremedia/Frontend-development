@@ -1,0 +1,27 @@
+{
+  "name": "@coremedia-training/brick-bootstrap",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "prettier": "prettier --write \"src/**/*.{js,json}\""
+  },
+  "devDependencies": {
+    "prettier": "^2.4.1"
+  },
+  "dependencies": {
+    "bootstrap-sass": "3.3.7",
+    "jquery": "^3.6.0"
+  },
+  "main": "src/js/index.js",
+  "coremedia": {
+    "type": "brick",
+    "init": "src/js/init.js",
+    "shim": {
+      "bootstrap-sass/assets/javascripts/bootstrap": {
+        "imports": {
+          "jQuery": "jquery"
+        }
+      }
+    }
+  }
+}

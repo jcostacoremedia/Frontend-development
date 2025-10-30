@@ -1,0 +1,5 @@
+packages:
+  - 'lib/tools/*'
+  - 'lib/bricks/*'
+  - 'bricks/*'
+  - 'themes/*'

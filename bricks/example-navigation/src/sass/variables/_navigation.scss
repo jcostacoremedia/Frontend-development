@@ -1,0 +1,6 @@
+//default variables
+$cm-navigation-delay: 0.4s !default; // time until the navigation vanishes when not hovered anymore
+$cm-navigation-border-bottom-width: 4px !default; // navigation hover and active indicator for tabs
+
+$cm-navigation-full-menu-breakpoints: ("sm", landscape) "lg-and-up" !default;
+$cm-navigation-hamburger-menu-breakpoints: "xs" ("sm", portrait) !default;

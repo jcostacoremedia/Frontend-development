@@ -1,0 +1,21 @@
+{
+  "name": "coredining",
+  "description": "The frontend development training theme",
+  "thumbnail": "coredining-theme-icon.jpg",
+  "styles": [
+    {
+      "type": "webpack",
+      "src": "src/sass/coredining.scss"
+    }
+  ],
+  "scripts": [
+    {
+      "type": "webpack",
+      "src": "src/js/coredining.js"
+    }
+  ],
+  "l10n": {
+    "bundleEncoding": "UTF-8",
+    "bundleNames": ["Coredining", "Bricks"]
+  }
+}

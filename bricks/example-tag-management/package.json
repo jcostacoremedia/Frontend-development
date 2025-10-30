@@ -1,0 +1,11 @@
+{
+  "name": "@coremedia-examples/brick-tag-management",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@coremedia/brick-page": "workspace:*"
+  },
+  "coremedia": {
+    "type": "brick"
+  }
+}

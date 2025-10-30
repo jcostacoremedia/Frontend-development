@@ -1,0 +1,20 @@
+{
+  "name": "@coremedia/livereload",
+  "version": "1.1.0",
+  "private": true,
+  "main": "src/index.js",
+  "dependencies": {
+    "@coremedia/cm-logger": "workspace:*",
+    "@coremedia/tool-utils": "workspace:*",
+    "tiny-lr": "^2.0.0"
+  },
+  "devDependencies": {
+    "@coremedia/eslint-config-frontend": "workspace:*",
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0"
+  },
+  "scripts": {
+    "lint": "eslint  \"src/**/*.js\"",
+    "test": "jest"
+  }
+}

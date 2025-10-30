@@ -1,0 +1,139 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`initPackageJson() returns data for package.json 1`] = `
+"{
+  "name": "@coremedia/my-test-theme",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "webpack",
+    "deploy": "cm theme-importer deploy-theme",
+    "start": "cm monitor",
+    "theme-importer": "cm theme-importer",
+    "lint": "eslint \\"src/**/*.js\\""
+  },
+  "__comment__dependencies__": {
+    "__comment__": "List of all brick dependencies. In order to add a dependency, move the entry to 'dependencies'",
+    "some-brick": "^1.0.0",
+    "some-other-brick": "^1.0.0",
+    "@coremedia/brick-utils": "workspace:*",
+    "jquery": "^3.7.1"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@coremedia/cm-cli": "workspace:*",
+    "@coremedia/eslint-config-frontend": "workspace:*",
+    "@coremedia/theme-utils": "workspace:*",
+    "eslint": "^8.56.0",
+    "webpack": "^5.90.3"
+  },
+  "main": "src/js/index.js",
+  "coremedia": {
+    "type": "theme",
+    "init": "src/js/my-test.js"
+  },
+  "browserslist": [
+    "last 1 Chrome version",
+    "last 1 Firefox version",
+    "last 1 Edge version"
+  ]
+}"
+`;
+
+exports[`initPreviewJs() returns data for preview.js 1`] = `
+"/*! Theme my-test: Preview JS */
+// add preview specific code here...
+"
+`;
+
+exports[`initPreviewSass() returns data for preview.sass 1`] = `
+"/*! Theme my-test: Preview Styles */
+// ### VARIABLES ###
+
+// Own variables (need to be loaded first, so default values can be overridden)
+// @see https://sass-lang.com/documentation/file.SASS_REFERENCE.html#Variable_Defaults___default
+
+//@import "variables/...";
+
+// Dependency variables
+
+@import "?smart-import-variables";
+
+// ... add third-party dependencies here (after smart-import-variables)
+
+// ### PARTIALS ###
+
+// Dependency partials
+
+// ... add third-party dependencies here (before smart-import-partials)
+
+@import "?smart-import-partials";
+
+// Own partials
+
+//@import "partials/...";
+"
+`;
+
+exports[`initThemeConfigJson() returns data for theme descriptor 1`] = `
+"{
+  "name": "my-test",
+  "styles": [
+    {
+      "type": "webpack",
+      "src": "src/sass/my-test.scss"
+    }
+  ],
+  "scripts": [
+    {
+      "type": "webpack",
+      "src": "src/js/my-test.js"
+    }
+  ],
+  "l10n": {
+    "bundleEncoding": "UTF-8",
+    "bundleNames": [
+      "My-test"
+    ]
+  }
+}"
+`;
+
+exports[`initThemeIndexJs() returns data for index.js 1`] = `
+"/*! Theme my-test */
+import "./my-test.js";
+"
+`;
+
+exports[`initThemeJs() returns data for <themeName>.js 1`] = `
+"//import $ from "jquery";
+//import * as utils from "@coremedia/brick-utils";
+
+// --- JQUERY DOCUMENT READY -------------------------------------------------------------------------------------------
+
+//$(function () {
+//  utils.log("Theme my-test is used.");
+//});
+"
+`;
+
+exports[`initThemeSass() returns data for <themeName>.sass 1`] = `
+"/*! Theme my-test */
+// ### VARIABLES ###
+
+// Own variables (need to be loaded first, so default values can be overridden)
+// @see http://sass-lang.com/documentation/file.SASS_REFERENCE.html#Variable_Defaults___default
+
+@import "variables";
+
+// ### PARTIALS ###
+
+@import "partials";
+"
+`;
+
+exports[`initWebpackConfigJs() returns data for webpack.config.js 1`] = `
+"const { webpackConfig } = require("@coremedia/theme-utils");
+
+module.exports = webpackConfig;"
+`;

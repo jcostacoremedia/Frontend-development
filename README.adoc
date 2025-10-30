@@ -1,0 +1,88 @@
+:toc: macro
+:toclevels: 2
+= CoreMedia Frontend Workspace for Blueprints
+
+This README file describes how you get started with the CoreMedia Frontend Workspace for Blueprints.
+
+toc::[]
+
+
+Developing Themes and Bricks works on macOS, Windows, and Linux.
+
+== Build with pnpm
+
+Building directly on your workstation provides you with a immediate integration with your IDE and
+is the preferred way for all frontend developers.
+
+=== Prerequisites
+* Node.js `[20.x,)`
+* pnpm `[8.6.x,)`
+
+=== Build the Themes
+
+From the workspace root folder run the following commands, to install all dependencies and build the themes:
+
+[source,sh]
+----
+pnpm install
+pnpm build
+----
+
+Create a new theme and run the built-in command for developer mode. It will will automatically reload the browser if you make changes to the code.
+
+[source,sh]
+----
+pnpm create-theme <name>
+pnpm install
+cd themes/<name>-theme
+pnpm start
+----
+
+You can run tests via `pnpm test`.
+
+For further instructions consult the _``Frontend Developer Guide``_.
+
+== Build with Docker
+
+The frontend workspace can also be build using Docker to encapsulate all the installation requirements of the build environment in a container. Using the provided `Dockerfile.tasks`, you can easily build a CI/CD process using either the Theme Importer application to import the created `frontend.zip`.
+
+=== Prerequistes
+
+* Docker `[v19.03,)`
+* https://docs.docker.com/develop/develop-images/build_enhancements/[Buildkit] enabled
+
+Please add the following to your `.npmrc`
+
+..npmrc
+----
+# https://github.com/pnpm/pnpm/issues/1069
+unsafe-perm=true
+----
+
+=== Build the Themes
+
+To build and test the frontend workspace just execute
+
+[source,bash]
+----
+rm -rf target && mkdir -p target
+docker buildx build -o target --secret id=npmrc,src=${NPM_RC_PATH:-~/.npmrc} -f Dockerfile.tasks .
+----
+
+The resulting `frontend.zip` can be found in the `target` folder.
+
+=== Code Completion for FreeMarker Templates
+
+Code completion for FreeMarker templates only works out-of-the-box when using the _``CoreMedia Blueprint Workspace``_. In
+addition to this you need to enable the Maven profile `code-completion` in your IDE.
+
+=== Troubleshooting
+
+If you encounter an error message like
+
+----
+Error response from daemon: Dockerfile parse error line xxx: Unknown flag: mount
+----
+
+You need to prefix your `docker build` call with `DOCKER_BUILDKIT=1 docker build`.
+

@@ -1,0 +1,13 @@
+{
+  "name": "@coremedia-examples/brick-hero-banner",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@coremedia/brick-default-teaser": "workspace:*",
+    "@coremedia/brick-slick-carousel": "workspace:*",
+    "@coremedia/brick-utils": "workspace:*"
+  },
+  "coremedia": {
+    "type": "brick"
+  }
+}

@@ -1,0 +1,25 @@
+/* Block */
+.xx-teaser {
+  /* Modifier */
+  &--block {
+    box-sizing: border-box;
+    border: solid lightgray 1px;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  /* Elements */
+
+  &__title {
+
+  }
+
+  &__picture {
+
+  }
+
+  &__text {
+
+  }
+}

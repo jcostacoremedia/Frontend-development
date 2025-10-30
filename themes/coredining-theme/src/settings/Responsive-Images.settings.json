@@ -1,0 +1,121 @@
+{
+  "enableRetinaImages": false,
+  "responsiveImageSettings": {
+    "portrait_ratio1x1": {
+      "widthRatio": 1,
+      "heightRatio": 1,
+      "minWidth": 115,
+      "minHeight": 115,
+      "previewWidth": 220,
+      "0": {
+        "width": 115,
+        "height": 115
+      },
+      "1": {
+        "width": 185,
+        "height": 185
+      },
+      "2": {
+        "width": 220,
+        "height": 220
+      },
+      "3": {
+        "width": 384,
+        "height": 384
+      },
+      "4": {
+        "width": 555,
+        "height": 555
+      },
+      "5": {
+        "width": 1110,
+        "height": 1110
+      }
+    },
+    "landscape_ratio4x3": {
+      "widthRatio": 4,
+      "heightRatio": 3,
+      "minWidth": 375,
+      "minHeight": 281,
+      "previewWidth": 375,
+      "0": {
+        "width": 200,
+        "height": 150
+      },
+      "1": {
+        "width": 375,
+        "height": 281
+      },
+      "2": {
+        "width": 414,
+        "height": 310
+      },
+      "3": {
+        "width": 768,
+        "height": 576
+      },
+      "4": {
+        "width": 1200,
+        "height": 905
+      },
+      "5": {
+        "width": 2400,
+        "height": 1810
+      }
+    },
+    "landscape_ratio16x9": {
+      "widthRatio": 16,
+      "heightRatio": 9,
+      "minWidth": 375,
+      "minHeight": 211,
+      "previewWidth": 375,
+      "0": {
+        "width": 375,
+        "height": 211
+      },
+      "1": {
+        "width": 414,
+        "height": 233
+      },
+      "2": {
+        "width": 600,
+        "height": 338
+      },
+      "3": {
+        "width": 944,
+        "height": 531
+      },
+      "4": {
+        "width": 1200,
+        "height": 675
+      },
+      "5": {
+        "width": 2400,
+        "height": 1350
+      }
+    },
+    "landscape_ratio8x3": {
+      "widthRatio": 8,
+      "heightRatio": 3,
+      "minWidth": 768,
+      "minHeight": 288,
+      "previewWidth": 400,
+      "0": {
+        "width": 400,
+        "height": 150
+      },
+      "1": {
+        "width": 768,
+        "height": 288
+      },
+      "2": {
+        "width": 1144,
+        "height": 429
+      },
+      "3": {
+        "width": 2280,
+        "height": 858
+      }
+    }
+  }
+}
