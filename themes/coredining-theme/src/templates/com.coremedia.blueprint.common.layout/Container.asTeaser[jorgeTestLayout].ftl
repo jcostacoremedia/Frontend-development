@@ -15,3 +15,15 @@
     </#if>
   </#list>
 </div>
+
+<div class="box">
+  <h2 class="text-center">Simon Test Layout</h2>
+    <div class="row">
+      <#list self.items![] as item>
+      <#assign positionInRow=item?index % 2 />
+      <div class="col-lg-6">
+        <@cm.include self=item view="asjorgeTestLayout" />
+      </div>
+      </#list>
+    </div>
+</div>

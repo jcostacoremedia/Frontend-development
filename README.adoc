@@ -42,47 +42,17 @@ You can run tests via `pnpm test`.
 
 For further instructions consult the _``Frontend Developer Guide``_.
 
-== Build with Docker
 
-The frontend workspace can also be build using Docker to encapsulate all the installation requirements of the build environment in a container. Using the provided `Dockerfile.tasks`, you can easily build a CI/CD process using either the Theme Importer application to import the created `frontend.zip`.
+Two teasers were created — each configured with a specific test image (HQ or Fuzzy).
+- ![Teaser](screenshots/teaser-hq.png)
+- ![Teaser](screenshots/teaser-fuzzy.png)
 
-=== Prerequistes
+These teasers were added to a **custom test page** for live comparison.
+- ![Page](screenshots/page-with-layout.png)
 
-* Docker `[v19.03,)`
-* https://docs.docker.com/develop/develop-images/build_enhancements/[Buildkit] enabled
+A **layout variant** was created to provide a tailored visual structure inside the CAE preview environment.
+- ![Teaser](screenshots/layout-variant.png)
 
-Please add the following to your `.npmrc`
-
-..npmrc
-----
-# https://github.com/pnpm/pnpm/issues/1069
-unsafe-perm=true
-----
-
-=== Build the Themes
-
-To build and test the frontend workspace just execute
-
-[source,bash]
-----
-rm -rf target && mkdir -p target
-docker buildx build -o target --secret id=npmrc,src=${NPM_RC_PATH:-~/.npmrc} -f Dockerfile.tasks .
-----
-
-The resulting `frontend.zip` can be found in the `target` folder.
-
-=== Code Completion for FreeMarker Templates
-
-Code completion for FreeMarker templates only works out-of-the-box when using the _``CoreMedia Blueprint Workspace``_. In
-addition to this you need to enable the Maven profile `code-completion` in your IDE.
-
-=== Troubleshooting
-
-If you encounter an error message like
-
-----
-Error response from daemon: Dockerfile parse error line xxx: Unknown flag: mount
-----
-
-You need to prefix your `docker build` call with `DOCKER_BUILDKIT=1 docker build`.
-
+The layout is **accessible through the local CoreMedia test environment**, allowing responsive and rendering tests directly in preview.
+- ![Teaser](screenshots/Container_jorgeTestLayout.ftl.png)
+- ![Teaser](screenshots/CMTeasable.asjorgeTestLayout.ftl.png)
