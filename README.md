@@ -1,48 +1,33 @@
-:toc: macro
-:toclevels: 2
-= CoreMedia Frontend Workspace for Blueprints
+## CoreMedia Frontend Workspace for Blueprints
 
-This README file describes how you get started with the CoreMedia Frontend Workspace for Blueprints.
-
-toc::[]
+##### This README file describes how you get started with the CoreMedia Frontend Workspace for Blueprints.
+##### Developing Themes and Bricks works on macOS, Windows, and Linux.
 
 
-Developing Themes and Bricks works on macOS, Windows, and Linux.
+### Build with pnpm
 
-== Build with pnpm
-
-Building directly on your workstation provides you with a immediate integration with your IDE and
+Building directly on your workstation provides you with immediate integration with your IDE and
 is the preferred way for all frontend developers.
 
-=== Prerequisites
+### Prerequisites
 * Node.js `[20.x,)`
 * pnpm `[8.6.x,)`
 
-=== Build the Themes
+### Build the Themes
+From the workspace root folder run the following commands to install all dependencies and build the themes:
+* pnpm install
+* pnpm build
 
-From the workspace root folder run the following commands, to install all dependencies and build the themes:
-
-[source,sh]
-----
-pnpm install
-pnpm build
-----
-
-Create a new theme and run the built-in command for developer mode. It will will automatically reload the browser if you make changes to the code.
-
-[source,sh]
-----
-pnpm create-theme <name>
-pnpm install
-cd themes/<name>-theme
-pnpm start
-----
+##### Create a new theme and run the built-in command for developer mode. It will automatically reload the browser if you make changes to the code.
+* pnpm create-theme <name>
+* pnpm install
+* cd themes/<name>-theme
+* pnpm start
 
 You can run tests via `pnpm test`.
-
 For further instructions consult the _``Frontend Developer Guide``_.
 
-
+## CoreMedia Studio:
 Two teasers were created — each configured with a specific test image (HQ or Fuzzy).
 - ![Teaser](screenshots/teaser-hq.png)
 - ![Teaser](screenshots/teaser-fuzzy.png)
@@ -56,3 +41,4 @@ A **layout variant** was created to provide a tailored visual structure inside t
 The layout is **accessible through the local CoreMedia test environment**, allowing responsive and rendering tests directly in preview.
 - ![Teaser](screenshots/Container_jorgeTestLayout.ftl.png)
 - ![Teaser](screenshots/CMTeasable.asjorgeTestLayout.ftl.png)
+
