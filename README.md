@@ -1,44 +1,87 @@
-## CoreMedia Frontend Workspace for Blueprints
+## CoreMedia Frontend Workspace
 
-##### This README file describes how you get started with the CoreMedia Frontend Workspace for Blueprints.
-##### Developing Themes and Bricks works on macOS, Windows, and Linux.
+# Teaser Layout Exercise
 
+This implementation introduces a configurable teaser layout with a clear separation of responsibilities between layout orchestration and content rendering.
 
-### Build with pnpm
+## Overview
 
-Building directly on your workstation provides you with immediate integration with your IDE and
-is the preferred way for all frontend developers.
+The solution is composed of three main FreeMarker components:
 
-### Prerequisites
-* Node.js `[20.x,)`
-* pnpm `[8.6.x,)`
+1. **Container.asTeaser[jorgeTestLayout].ftl**
+2. **CMTeasable.asjorgeTestLayout.ftl**
+3. **CMTeasable.asjorgeHighlight.ftl**
 
-### Build the Themes
-From the workspace root folder run the following commands to install all dependencies and build the themes:
-* pnpm install
-* pnpm build
+Each component has a well-defined role to keep the implementation modular, readable, and easy to extend.
 
-##### Create a new theme and run the built-in command for developer mode. It will automatically reload the browser if you make changes to the code.
-* pnpm create-theme <name>
-* pnpm install
-* cd themes/<name>-theme
-* pnpm start
+---
 
-You can run tests via `pnpm test`.
-For further instructions consult the _``Frontend Developer Guide``_.
+## 1. Container.asTeaser[jorgeTestLayout]
 
-## CoreMedia Studio:
-Two teasers were created — each configured with a specific test image (HQ or Fuzzy).
-- ![Teaser](screenshots/teaser-hq.png)
-- ![Teaser](screenshots/teaser-fuzzy.png)
+The container acts as the **layout orchestrator**.
 
-These teasers were added to a **custom test page** for live comparison.
-- ![Page](screenshots/page-with-layout.png)
+### Responsibilities
 
-A **layout variant** was created to provide a tailored visual structure inside the CAE preview environment.
-- ![Teaser](screenshots/layout-variant.png)
+- Reads layout-related settings:
+  - `layout.columns` (default: 2)
+  - `max.items` (default: 6)
+- Builds a Bootstrap-based grid (rows and columns).
+- Iterates over container items and decides which view to render:
+  - The first item is rendered as a highlight (`asjorgeHighlight`).
+  - Remaining items use the standard teaser view (`asjorgeTestLayout`).
+- Handles empty containers and invalid settings safely.
 
-The layout is **accessible through the local CoreMedia test environment**, allowing responsive and rendering tests directly in preview.
-- ![Teaser](screenshots/Container_jorgeTestLayout.ftl.png)
-- ![Teaser](screenshots/CMTeasable.asjorgeTestLayout.ftl.png)
+The container does **not** render content itself — it only organizes structure and delegates rendering to the views.
 
+---
+
+## 2. CMTeasable.asjorgeTestLayout
+
+This template represents the **standard teaser view**.
+
+### Responsibilities
+
+- Renders image, title, teaser text, and optional CTA.
+- Uses `cm.getLink(self)` and `utils.optionalLink` to make image and title clickable when applicable.
+- Truncates teaser text using a page-level setting:
+  - `teaser.max.length` (default: 140)
+- Provides fallbacks for missing image, title, or teaser text.
+
+This view has no knowledge of grid or layout logic.
+
+---
+
+## 3. CMTeasable.asjorgeHighlight
+
+This template represents the **highlight teaser variant**, used for the first item in the container.
+
+### Responsibilities
+
+- Renders the same base content as the standard teaser, with a stronger visual emphasis.
+- Supports dedicated settings:
+  - `highlight.teaser.max.length` (default: 260)
+  - `highlight.teaser.label`
+  - `highlight.teaser.picture.view`
+- Uses a larger heading level and dedicated CSS classes for styling.
+- Keeps layout concerns outside of the view.
+
+---
+
+## Design Principles
+
+- Clear separation of responsibilities between container and views
+- Configuration-driven behavior via CoreMedia settings
+- Safe defaults and fallbacks to avoid rendering errors
+- Modular structure that allows easy extension (e.g. additional teaser variants)
+
+---
+
+## Possible Next Steps
+
+- Extract shared logic (media block, headline, CTA) into small FreeMarker macros to reduce duplication between teaser views.
+- Align CSS class naming between standard and highlight teasers if needed.
+- Add additional teaser variants without changing container logic.
+
+---
+
+This setup demonstrates a scalable and maintainable approach to rendering teaser-based layouts in CoreMedia.
